@@ -23,9 +23,17 @@ struct Tamagotchi {
         """
     }
     
-    mutating func feed() {
-        if hunger < 10 {
-            hunger += 1
+    mutating func feedMeal() {
+        if self.hunger < 9 {
+            self.hunger += 2
+        }else {
+            print("Cannot feed, Tamagotchi is full")
+        }
+    }
+    
+    mutating func feedSnack() {
+        if self.hunger < 10 {
+            self.hunger += 1
         }else {
             print("Cannot feed, Tamagotchi is full")
         }

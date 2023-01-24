@@ -14,8 +14,11 @@ struct ContentView: View {
         VStack {
             Text(tamagotchi.displayStats())
                 .padding()
-            Button("Feed Tamagotchi", action: {
-                tamagotchi.feed()
+            Button("Feed Tamagotchi a Meal", action: {
+                tamagotchi.feedMeal()
+            })
+            Button("Feed Tamagotchi a Snack", action: {
+                tamagotchi.feedSnack()
             })
         }
     }
