@@ -8,18 +8,47 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var tamagotchi = Tamagotchi(health: 10, hunger: 5, sleep: 10, medicine: 10)
+    
+    
+    @State private var tamagotchi = Tamagotchi(health: 10, hunger: 5, sleep: 10, medicine: 10, happy: 0)
+    
+    var canPlay: Bool {
+        var canPlay = true
+        if tamagotchi.health < 7 && tamagotchi.hunger < 5 && tamagotchi.sleep < 5 && tamagotchi.medicine < 8 {
+            canPlay = false
+        }else {
+            canPlay = true
+        }
+        return canPlay
+    }
+    
+    
+    
+    
+    
     
     var body: some View {
         VStack {
-            Text(tamagotchi.displayStats())
-                .padding()
-            Button("Feed Tamagotchi a Meal", action: {
-                tamagotchi.feedMeal()
-            })
-            Button("Feed Tamagotchi a Snack", action: {
-                tamagotchi.feedSnack()
-            })
+            
+            Form {
+               
+                VStack(spacing: 100) {
+                    Text(tamagotchi.displayStats())
+                        .padding()
+                }
+                Section {
+                    Button("Feed Tamagotchi a Meal", action: {
+                        tamagotchi.feedMeal()
+                    })
+                    Button("Feed Tamagotchi a Snack", action: {
+                        tamagotchi.feedSnack()
+                    })
+                    Button("Play a game with Tamagotchi", action: {
+                        tamagotchi.playGame()
+                    })
+                        .disabled(!canPlay)
+                }
+            }
         }
     }
 }
